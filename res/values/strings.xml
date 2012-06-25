@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">android.action.SENDを発行する動作をし、chooserからIntentHelperを選択することで使用できます。使用すると短縮URLを展開した状態でchooserを呼び出すことができます。</string>
+    <string name="app_name">IntentHelper</string>
+
+</resources>
