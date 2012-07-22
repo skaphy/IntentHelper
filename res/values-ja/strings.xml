@@ -1,10 +1,16 @@
 <resources>
 
     <string name="app_name">IntentHelper2</string>
-    <string name="menu_howtouse">使い方</string>
-    <string name="menu_howtouse_description">使い方をブラウザで開く</string>
-    <string name="app_version" >IntentHelper2 (Pocketfxxker) 2.00</string><string name="menu_version">バージョン</string>
+    <string name="preference_howtouse">使い方</string>
+    <string name="preference_howtouse_summary">使い方をブラウザで開く</string>
+    <string name="app_version" >IntentHelper2 (Pocketfxxker) 2.00</string><string name="preference_version">バージョン</string>
     <string name="expanding_pleasewait">URLを展開しています... しばらくお待ちください...</string>
-    
+    <string name="preference_max_redirect_count">リダイレクト回数</string><string name="preference_max_redirect_count_summary" >一度に追うリダイレクト回数の指定</string>
+    <string name="preference_category_appinfo">アプリの情報</string>
+    <string name="preference_preference">設定</string>
+    <string name="preference_hide_applications">アプリを隠す</string>
+    <string name="preference_hide_applications_summary">Not implemented</string>
+    <string name="preference_onetap_intent">いつも同じアプリを起動</string>
+    <string name="preference_onetap_intent_summary">Not implemented</string>
 
 </resources>
