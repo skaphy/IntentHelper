@@ -4,12 +4,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.app.Activity;
+import android.content.Intent;
 
 public class MainActivity extends Activity {
+
+	private final Uri howtouse_uri = Uri.parse("http://skaphylog.tumblr.com/");
+
+	private final int LVID_HOWTOUSE = 0;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -50,12 +60,23 @@ public class MainActivity extends Activity {
 		data = new HashMap<String, String>();
 		data.put("title", "使い方");
 		data.put("description", "使い方をブラウザで開く");
-		dataList.add(data);
+		dataList.add(LVID_HOWTOUSE, data);
 
 		data = new HashMap<String, String>();
 		data.put("title", "Version");
 		data.put("description", "IntentHelper2(Pocketfxxker) 2.00");
 		dataList.add(data);
+
+		lv.setOnItemClickListener(new OnItemClickListener()
+		{
+			public void onItemClick(AdapterView<?> adapter, View view, int position, long id)
+			{
+				if (id == LVID_HOWTOUSE)
+				{
+					startActivity(new Intent(Intent.ACTION_VIEW, howtouse_uri));
+				}
+			}
+		});
 	}
 
 }
