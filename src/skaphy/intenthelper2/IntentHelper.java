@@ -18,7 +18,7 @@ public class IntentHelper extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Toast.makeText(this, "Expanding url... Please wait...", Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, getString(R.string.expanding_pleasewait), Toast.LENGTH_SHORT).show();
 		ExpandURL.showChooser(this, getExtraUrl());
 		finish();
 	}

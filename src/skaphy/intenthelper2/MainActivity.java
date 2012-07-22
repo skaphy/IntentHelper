@@ -58,13 +58,13 @@ public class MainActivity extends Activity {
 		*/
 
 		data = new HashMap<String, String>();
-		data.put("title", "使い方");
-		data.put("description", "使い方をブラウザで開く");
+		data.put("title", getString(R.string.menu_howtouse));
+		data.put("description", getString(R.string.menu_howtouse_description));
 		dataList.add(LVID_HOWTOUSE, data);
 
 		data = new HashMap<String, String>();
-		data.put("title", "Version");
-		data.put("description", "IntentHelper2(Pocketfxxker) 2.00");
+		data.put("title", getString(R.string.menu_version));
+		data.put("description", getString(R.string.app_version));
 		dataList.add(data);
 
 		lv.setOnItemClickListener(new OnItemClickListener()
