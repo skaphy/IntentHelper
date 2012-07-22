@@ -1,10 +1,10 @@
-package skaphy.intenthelper;
+package skaphy.intenthelper2;
 
 import java.io.IOException;
 import android.app.Activity;
-import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
@@ -13,7 +13,7 @@ import org.apache.http.client.methods.HttpHead;
 import org.apache.http.client.params.HttpClientParams;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-public class IntentHelperMain extends Activity {
+public class IntentHelper extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -30,54 +30,59 @@ public class IntentHelperMain extends Activity {
 
 }
 
-class ExpandURL extends AsyncTaskLoader
+class ExpandURL extends AsyncTask<String, Integer, Integer>
 {
 
-	// リダイレクトは最大10個先まで追う
 	private final int DEFAULT_LIMIT = 10;
 
-	private String  url;
 	private Context context;
 	private Handler handler;
-
-	public ExpandURL(Context _context, String _url) {
-		super(_context);
+	
+	public ExpandURL(Context _context)
+	{
+		super();
 		context = _context;
-		url = _url;
+	}
+
+	@Override
+	protected void onPreExecute()
+	{
 		handler = new Handler();
+	}
+	
+	@Override
+	protected Integer doInBackground(String... url)
+	{
+		String redirect_to = "";
+		try {
+			redirect_to = expandUrl(url[0]);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		showChooser(redirect_to);
+		return 0;
 	}
 	
 	public static ExpandURL showChooser(Context _context, String _url)
 	{
-		ExpandURL eurl = new ExpandURL(_context, _url);
-		eurl.forceLoad();
+		ExpandURL eurl = new ExpandURL(_context);
+		eurl.execute(_url);
 		return eurl;
 	}
-
-	@Override
-	public Object loadInBackground()
+	
+	private void showChooser(final String _url)
 	{
-		String _redirect_to = "";
-		try {
-			_redirect_to = expandUrl(url);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		final String redirect_to = _redirect_to;
-
 		handler.post(new Runnable(){
-			@Override
 			public void run() {
 				Intent intent = new Intent();
 				intent.setAction(Intent.ACTION_SEND);
 				intent.setType("text/plain");
-				intent.putExtra(Intent.EXTRA_TEXT, redirect_to);
-				context.startActivity(Intent.createChooser(intent, redirect_to));
+				intent.putExtra(Intent.EXTRA_TEXT, _url);
+				context.startActivity(Intent.createChooser(intent, _url));
 			}
 		});
-		return null;
 	}
-
+	
 	private String expandUrl(String url) throws IOException
 	{
 		return expandUrl(url, DEFAULT_LIMIT);
