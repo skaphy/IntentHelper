@@ -19,5 +19,8 @@
     <string name="preference_developed_by_summary">"@"skaphy</string>
     <string name="howtouse_url">http://skaphylog.tumblr.com/</string>
     <string name="developer_url">http://twitter.com/skaphy</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_intent_helper_chooser">IntentHelper</string>
 
 </resources>
