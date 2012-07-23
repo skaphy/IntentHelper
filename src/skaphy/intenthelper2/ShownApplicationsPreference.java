@@ -41,10 +41,8 @@ public class ShownApplicationsPreference extends Activity {
 				List<String> apps = new ArrayList<String>();
 				// アプリが増えるほど遅くなると思う
 				SparseBooleanArray arr = lv.getCheckedItemPositions();
-				for (int i = 0; i < arr.size(); i++)
-				{
-					if (arr.valueAt(i))
-					{
+				for (int i = 0; i < arr.size(); i++) {
+					if (arr.valueAt(i)) {
 						apps.add(ailist.get(arr.keyAt(i)).name);
 					}
 				}
@@ -66,16 +64,12 @@ public class ShownApplicationsPreference extends Activity {
 		ailist = new ArrayList<ActivityInfo>();
 		
 		List<ResolveInfo> resolveinfo = pm.queryIntentActivities(intent, 0);
-		for (ResolveInfo app : resolveinfo)
-		{
-			//adapter.add(app.activityInfo.name);
+		for (ResolveInfo app : resolveinfo) {
 			ailist.add(app.activityInfo);
 			adapter.add((String) app.activityInfo.loadLabel(pm));
 			// たくさんアプリが選択されてると遅そう
-			for (String selected : selectedIntentNames)
-			{
-				if (selected.equals(app.activityInfo.name))
-				{
+			for (String selected : selectedIntentNames) {
+				if (selected.equals(app.activityInfo.name)) {
 					checks.add(i);
 				}
 			}

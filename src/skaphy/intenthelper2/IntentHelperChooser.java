@@ -38,25 +38,18 @@ public class IntentHelperChooser extends Activity {
 		intent.setType("text/plain");
 		intent.setAction(Intent.ACTION_SEND);
 		List<ResolveInfo> resolveInfo = pm.queryIntentActivities(intent, 0);
-		for (ResolveInfo riapp : resolveInfo)
-		{
+		for (ResolveInfo riapp : resolveInfo) {
 			boolean isShown = false;
-			if (apps.length == 0)
-			{
+			if (apps.length == 0) {
 				activityinfos.add(riapp.activityInfo);
-			}
-			else
-			{
-				for (String app : apps)
-				{
-					if (app.equals(riapp.activityInfo.name))
-					{
+			} else {
+				for (String app : apps) {
+					if (app.equals(riapp.activityInfo.name)) {
 						isShown = true;
 						break;
 					}
 				}
-				if (isShown)
-				{
+				if (isShown) {
 					activityinfos.add(riapp.activityInfo);
 				}
 			}
@@ -68,7 +61,7 @@ public class IntentHelperChooser extends Activity {
 		
 		expanded_uri = Uri.parse(getIntent().getExtras().getString(Intent.EXTRA_TEXT));
 		
-		lv.setOnItemClickListener(new OnItemClickListener(){
+		lv.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
 				ActivityInfo ai = (ActivityInfo) adapter.getAdapter().getItem(position);
 				Intent intent = new Intent();
@@ -83,15 +76,13 @@ public class IntentHelperChooser extends Activity {
 
 }
 
-class ChooserAdapter extends BaseAdapter
-{
+class ChooserAdapter extends BaseAdapter {
 
 	private Context context;
 	private List<ActivityInfo> list;
 	private LayoutInflater inflater;
 	
-	public ChooserAdapter(Context ctx, List<ActivityInfo> li)
-	{
+	public ChooserAdapter(Context ctx, List<ActivityInfo> li) {
 		context = ctx;
 		list = li;
 		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -126,35 +117,3 @@ class ChooserAdapter extends BaseAdapter
 	}
 	
 }
-
-/*
-	@Override  
-	public View getView(int position, View convertView, ViewGroup parent) {  
-		// ビューを受け取る  
-		View view = convertView;  
-		if (view == null) {  
-			// 受け取ったビューがnullなら新しくビューを生成  
-			view = inflater.inflate(R.layout.twitter_row, null);  
-			// 背景画像をセットする  
-			view.setBackgroundResource(R.drawable.back);  
-		}  
-		// 表示すべきデータの取得  
-		TwitterStatus item = (TwitterStatus)items.get(position);  
-		if (item != null) {  
-			TextView screenName = (TextView)view.findViewById(R.id.toptext);  
-			screenName.setTypeface(Typeface.DEFAULT_BOLD);  
-			  
-			// スクリーンネームをビューにセット  
-			TextView text = (TextView)view.findViewById(R.id.bottomtext);  
-			if (screenName != null) {  
-				screenName.setText(item.getScreenName());  
-			}  
-			  
-			// テキストをビューにセット  
-			if (text != null) {  
-				text.setText(item.getText());  
-			}  
-		}  
-		return view;  
-	}  
-*/

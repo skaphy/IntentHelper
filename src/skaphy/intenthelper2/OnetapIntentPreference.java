@@ -32,33 +32,26 @@ public class OnetapIntentPreference extends Activity {
 		lv.setAdapter(adapter);
 
 		IntentHelperPreferences pref = new IntentHelperPreferences(getApplicationContext());
-		if (pref.getOnetapIntent() != null)
-		{
+		if (pref.getOnetapIntent() != null) {
 			addActivitiesToAdapter(adapter, pref.getOnetapIntent().getComponent().getClassName());
-		}
-		else
-		{
+		} else {
 			addActivitiesToAdapter(adapter, "");
 		}
 		
-		lv.setOnItemClickListener(new OnItemClickListener(){
+		lv.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
 				IntentHelperPreferences pref = new IntentHelperPreferences(getApplicationContext());
 				ActivityInfo ai = ailist.get(pos);
-				if (ai == null)
-				{
+				if (ai == null) {
 					pref.setOnetapIntent(null, null);
-				}
-				else
-				{
+				} else {
 					pref.setOnetapIntent(ai.packageName, ai.name);
 				}
 			}
 		});
 	}
 	
-	private void addActivitiesToAdapter(ArrayAdapter<String> adapter, String selectedIntentName)
-	{
+	private void addActivitiesToAdapter(ArrayAdapter<String> adapter, String selectedIntentName) {
 		int i = 1, checked = 0;
 		PackageManager pm = this.getPackageManager();
 		
@@ -72,13 +65,11 @@ public class OnetapIntentPreference extends Activity {
 		ailist.add(null);
 		
 		List<ResolveInfo> resolveinfo = pm.queryIntentActivities(intent, 0);
-		for (ResolveInfo app : resolveinfo)
-		{
+		for (ResolveInfo app : resolveinfo) {
 			//adapter.add(app.activityInfo.name);
 			ailist.add(app.activityInfo);
 			adapter.add((String) app.activityInfo.loadLabel(pm));
-			if (selectedIntentName.equals(app.activityInfo.name))
-			{
+			if (selectedIntentName.equals(app.activityInfo.name)) {
 				checked = i;
 			}
 			i++;
