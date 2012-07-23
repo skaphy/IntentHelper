@@ -1,21 +1,34 @@
 <resources>
 
     <string name="app_name">IntentHelper2</string>
+    <string name="app_version">IntentHelper2 (Pocketfxxker) 2.00</string>
+
+
+    <string name="preference_preference">設定</string>
+
+    <string name="preference_max_redirect_count">最大リダイレクト回数</string>
+    <string name="preference_max_redirect_count_summary">1度に処理するリダイレクトの回数</string>
+
+    <string name="preference_shown_applications">使用するアプリ</string>
+    <string name="preference_shown_applications_summary">chooserに表示するアプリ</string>
+
+    <string name="preference_onetap_intent">自動起動するアプリ</string>
+    <string name="preference_onetap_intent_summary">chooserでIntentHelper2を選んだ時に自動で開くアプリ</string>
+
+
+    <string name="preference_category_appinfo">アプリ情報</string>
+
     <string name="preference_howtouse">使い方</string>
     <string name="preference_howtouse_summary">使い方をブラウザで開く</string>
-    <string name="app_version" >IntentHelper2 (Pocketfxxker) 2.00</string><string name="preference_version">バージョン</string>
-    <string name="expanding_pleasewait">URLを展開しています... しばらくお待ちください...</string>
-    <string name="preference_max_redirect_count">リダイレクト回数</string><string name="preference_max_redirect_count_summary" >一度に追うリダイレクト回数の指定</string>
-    <string name="preference_category_appinfo">アプリの情報</string>
-    <string name="preference_preference">設定</string>
-    <string name="preference_shown_applications">表示するアプリ</string>
-    <string name="preference_shown_applications_summary">chooserに表示するアプリ</string>
-    <string name="preference_onetap_intent">いつも同じアプリを起動</string>
-    <string name="preference_onetap_intent_summary">IntentHelper2がchooserでタップされた時常に同じアプリを起動</string>
-    <string name="title_activity_onetap_intent_preference">いつも同じアプリを起動</string>
-    <string name="preference_developed_by">開発者</string>
-    <string name="preference_developed_by_summary">&quot;@&quot;skaphy</string>
     <string name="howtouse_url">http://skaphylog.tumblr.com/</string>
+
+    <string name="preference_developed_by">開発者</string>
+    <string name="preference_developed_by_summary">"@"skaphy</string>
     <string name="developer_url">http://twitter.com/skaphy</string>
+
+    <string name="preference_version">Version</string>
+
+
+    <string name="expanding_pleasewait">Expanding URL.... Please wait...</string>
 
 </resources>
