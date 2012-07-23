@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory android:title="@string/preference_preference"><EditTextPreference android:title="@string/preference_max_redirect_count" android:summary="@string/preference_max_redirect_count_summary" android:defaultValue="10" android:key="max_redirect_count"/><Preference android:title="@string/preference_hide_applications" android:summary="@string/preference_hide_applications_summary"/>
+    <PreferenceCategory android:title="@string/preference_preference"><EditTextPreference android:title="@string/preference_max_redirect_count" android:summary="@string/preference_max_redirect_count_summary" android:defaultValue="10" android:key="max_redirect_count"/><Preference android:title="@string/preference_shown_applications" android:summary="@string/preference_shown_applications_summary" android:key="hide_applications"/>
     <Preference android:title="@string/preference_onetap_intent" android:summary="@string/preference_onetap_intent_summary" android:key="onetap_intent"/>
 </PreferenceCategory>
     <PreferenceCategory android:title="@string/preference_category_appinfo">

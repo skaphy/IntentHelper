@@ -8,8 +8,8 @@
     <string name="preference_max_redirect_count">リダイレクト回数</string><string name="preference_max_redirect_count_summary" >一度に追うリダイレクト回数の指定</string>
     <string name="preference_category_appinfo">アプリの情報</string>
     <string name="preference_preference">設定</string>
-    <string name="preference_hide_applications">アプリを隠す</string>
-    <string name="preference_hide_applications_summary">Not implemented</string>
+    <string name="preference_shown_applications">表示するアプリ</string>
+    <string name="preference_shown_applications_summary">chooserに表示するアプリ</string>
     <string name="preference_onetap_intent">いつも同じアプリを起動</string>
     <string name="preference_onetap_intent_summary">IntentHelper2がchooserでタップされた時常に同じアプリを起動</string>
     <string name="title_activity_onetap_intent_preference">いつも同じアプリを起動</string>

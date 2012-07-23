@@ -31,5 +31,11 @@ public class IntentHelperPreferencesActivity extends PreferenceActivity
 				return true;
 			}
 		});
+		findPreference("hide_applications").setOnPreferenceClickListener(new OnPreferenceClickListener(){
+			public boolean onPreferenceClick(Preference preference) {
+				startActivity(new Intent(getApplicationContext(), ShownApplicationsPreference.class));
+				return true;
+			}
+		});
 	}
 }

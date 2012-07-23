@@ -30,15 +30,36 @@ public class IntentHelperChooser extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_intent_helper_chooser);
 		
+		String[] apps = (new IntentHelperPreferences(this)).getShownApplications();
+		
 		List<ActivityInfo> activityinfos = new ArrayList<ActivityInfo>();
 		Intent intent = new Intent();
 		PackageManager pm = getPackageManager();
 		intent.setType("text/plain");
 		intent.setAction(Intent.ACTION_SEND);
 		List<ResolveInfo> resolveInfo = pm.queryIntentActivities(intent, 0);
-		for (ResolveInfo app : resolveInfo)
+		for (ResolveInfo riapp : resolveInfo)
 		{
-			activityinfos.add(app.activityInfo);
+			boolean isShown = false;
+			if (apps.length == 0)
+			{
+				activityinfos.add(riapp.activityInfo);
+			}
+			else
+			{
+				for (String app : apps)
+				{
+					if (app.equals(riapp.activityInfo.name))
+					{
+						isShown = true;
+						break;
+					}
+				}
+				if (isShown)
+				{
+					activityinfos.add(riapp.activityInfo);
+				}
+			}
 		}
 		
 		ListView lv = (ListView) findViewById(R.id.chooser_applications_listview);
