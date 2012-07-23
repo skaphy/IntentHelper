@@ -13,7 +13,7 @@
     <string name="preference_hide_applications">Hide applications</string>
     <string name="preference_hide_applications_summary">Not implemented</string>
     <string name="preference_onetap_intent">Always use same application</string>
-    <string name="preference_onetap_intent_summary">Not implemented</string>
-    
+    <string name="preference_onetap_intent_summary">Always open same app when IntentHelper2 tapped on chooser</string>
+    <string name="title_activity_onetap_intent_preference">Always use same application</string>
 
 </resources>

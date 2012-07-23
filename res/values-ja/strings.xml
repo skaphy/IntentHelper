@@ -11,6 +11,7 @@
     <string name="preference_hide_applications">アプリを隠す</string>
     <string name="preference_hide_applications_summary">Not implemented</string>
     <string name="preference_onetap_intent">いつも同じアプリを起動</string>
-    <string name="preference_onetap_intent_summary">Not implemented</string>
+    <string name="preference_onetap_intent_summary">IntentHelper2がchooserでタップされた時常に同じアプリを起動</string>
+    <string name="title_activity_onetap_intent_preference">いつも同じアプリを起動</string>
 
 </resources>

@@ -22,5 +22,11 @@ public class IntentHelperPreferencesActivity extends PreferenceActivity
 				return true;
 			}
 		});
+		findPreference("onetap_intent").setOnPreferenceClickListener(new OnPreferenceClickListener(){
+			public boolean onPreferenceClick(Preference preference) {
+				startActivity(new Intent(getApplicationContext(), OnetapIntentPreference.class));
+				return true;
+			}
+		});
 	}
 }

@@ -72,11 +72,21 @@ class ExpandURL extends AsyncTask<String, Integer, Integer>
 	{
 		handler.post(new Runnable(){
 			public void run() {
-				Intent intent = new Intent();
-				intent.setAction(Intent.ACTION_SEND);
-				intent.setType("text/plain");
-				intent.putExtra(Intent.EXTRA_TEXT, _url);
-				context.startActivity(Intent.createChooser(intent, _url));
+				IntentHelperPreferences pref = new IntentHelperPreferences(context);
+				if (pref.getOnetapIntent() == null)
+				{
+					Intent intent = new Intent();
+					intent.setAction(Intent.ACTION_SEND);
+					intent.setType("text/plain");
+					intent.putExtra(Intent.EXTRA_TEXT, _url);
+					context.startActivity(Intent.createChooser(intent, _url));
+				}
+				else
+				{
+					Intent intent = pref.getOnetapIntent();
+					intent.putExtra(Intent.EXTRA_TEXT, _url);
+					context.startActivity(intent);
+				}
 			}
 		});
 	}
