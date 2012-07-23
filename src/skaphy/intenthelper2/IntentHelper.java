@@ -47,7 +47,7 @@ class ExpandURL extends AsyncTask<String, Integer, Integer>
 	{
 		handler = new Handler();
 	}
-	
+
 	@Override
 	protected Integer doInBackground(String... url)
 	{
@@ -60,14 +60,14 @@ class ExpandURL extends AsyncTask<String, Integer, Integer>
 		showChooser(redirect_to);
 		return 0;
 	}
-	
+
 	public static ExpandURL showChooser(Context _context, String _url)
 	{
 		ExpandURL eurl = new ExpandURL(_context);
 		eurl.execute(_url);
 		return eurl;
 	}
-	
+
 	private void showChooser(final String _url)
 	{
 		handler.post(new Runnable(){
@@ -90,7 +90,7 @@ class ExpandURL extends AsyncTask<String, Integer, Integer>
 			}
 		});
 	}
-	
+
 	private String expandUrl(String url) throws IOException
 	{
 		IntentHelperPreferences pref = new IntentHelperPreferences(context);
@@ -103,7 +103,7 @@ class ExpandURL extends AsyncTask<String, Integer, Integer>
 		HttpHead request;
 		HttpResponse response;
 		String redirect_to = url;
-		
+
 		for (int i = 0; i < limit; i++)
 		{
 			httpclient = new DefaultHttpClient();
@@ -113,7 +113,7 @@ class ExpandURL extends AsyncTask<String, Integer, Integer>
 			if (response.getFirstHeader("Location") == null) break;
 			redirect_to = response.getFirstHeader("Location").getValue();
 		};
-		
+
 		return redirect_to;
 	}
 

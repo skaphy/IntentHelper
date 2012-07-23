@@ -38,7 +38,7 @@ public class OnetapIntentPreference extends Activity {
 		} else {
 			addActivitiesToAdapter("");
 		}
-		
+
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
 				IntentHelperPreferences pref = new IntentHelperPreferences(getApplicationContext());
@@ -51,7 +51,7 @@ public class OnetapIntentPreference extends Activity {
 			}
 		});
 	}
-	
+
 	private void addActivitiesToAdapter(String selectedIntentName)
 	{
 		int i = 1, checked = 0;
@@ -59,10 +59,10 @@ public class OnetapIntentPreference extends Activity {
 
 		ActivityInfo[] ais = Util.getActivities(this, "text/plain", Intent.ACTION_SEND);
 		ailist = new ArrayList<ActivityInfo>();
-		
+
 		adapter.add("Disable");
 		ailist.add(null);
-		
+
 		for (ActivityInfo ai : ais) {
 			ailist.add(ai);
 			adapter.add((String) ai.loadLabel(pm));

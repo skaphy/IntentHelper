@@ -16,12 +16,12 @@ public class IntentHelperPreferences {
 	private SharedPreferences pref;
 
 	private final int DEFAULT_REDIRECT_LIMIT = 10;
-	
+
 	public IntentHelperPreferences(Context ctx) {
 		context = ctx;
 		pref = context.getSharedPreferences("skaphy.intenthelper2_preferences", Context.MODE_PRIVATE);
 	}
-	
+
 	int getMaxRedirectCount() {
 		String val = pref.getString("max_redirect_count", String.valueOf(DEFAULT_REDIRECT_LIMIT));
 		if (val.matches("^[0-9]+$")) {
@@ -30,11 +30,11 @@ public class IntentHelperPreferences {
 		setMaxRedirectCount(DEFAULT_REDIRECT_LIMIT);
 		return getMaxRedirectCount();
 	}
-	
+
 	void setMaxRedirectCount(int num) {
 		setMaxRedirectCount(String.valueOf(num));
 	}
-	
+
 	void setMaxRedirectCount(String num) {
 		if (num.matches("^[0-9]+$")) {
 			pref.edit().putString("max_redirect_count", String.valueOf(DEFAULT_REDIRECT_LIMIT)).commit();
@@ -42,7 +42,7 @@ public class IntentHelperPreferences {
 			pref.edit().putString("max_redirect_count", String.valueOf(DEFAULT_REDIRECT_LIMIT)).commit();
 		}
 	}
-	
+
 	public Intent getOnetapIntent() {
 		String packageName = pref.getString("onetap_intent_package", null);
 		String activityName = pref.getString("onetap_intent_activity", null);
@@ -57,10 +57,10 @@ public class IntentHelperPreferences {
 		if (!isExistActivity(intent)) {
 			return null;
 		}
-		
+
 		return intent;
 	}
-	
+
 	public void setOnetapIntent(String packageName, String activityName) {
 		if (packageName == null) {
 			pref.edit().remove("onetap_intent_package").commit();
@@ -73,18 +73,18 @@ public class IntentHelperPreferences {
 			pref.edit().putString("onetap_intent_activity", activityName).commit();
 		}
 	}
-	
+
 	private boolean isExistActivity(Intent intent) {
 		PackageManager pm = context.getPackageManager();
 		List<ResolveInfo> resolveinfo = pm.queryIntentActivities(intent, 0);
 		return (resolveinfo.size() == 0) ? false : true;
 	}
-	
+
 	public String[] getShownApplications() {
 		String[] apps;
 		String appspref = pref.getString("shownapps", "");
 		apps = appspref.split(",");
-		
+
 		// 存在するアクティビティのみにする
 		List<String> apps_exists = new ArrayList<String>();
 		ActivityInfo[] ais = Util.getActivities(context, "text/plain", Intent.ACTION_SEND);
@@ -95,10 +95,10 @@ public class IntentHelperPreferences {
 				}
 			}
 		}
-		
+
 		return apps_exists.toArray(new String[0]);
 	}
-	
+
 	public void setShownApplications(String[] apps) {
 		StringBuilder appsjoined = new StringBuilder();
 		for (String app : apps) {

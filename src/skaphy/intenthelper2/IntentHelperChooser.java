@@ -21,7 +21,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 
 public class IntentHelperChooser extends Activity {
-	
+
 	private Uri expanded_uri;
 	private IntentHelperPreferences prefs;
 	private ChooserAdapter adapter;
@@ -49,16 +49,16 @@ public class IntentHelperChooser extends Activity {
 				}
 			}
 		}
-		
+
 		// リストビュー設定
 		ListView lv = (ListView) findViewById(R.id.chooser_applications_listview);
 		adapter = new ChooserAdapter(this, activityinfos);
 		lv.setAdapter(adapter);
-		
+
 		// 展開後のURLを取得・表示
 		expanded_uri = Uri.parse(getIntent().getExtras().getString(Intent.EXTRA_TEXT));
 		((TextView) findViewById(R.id.chooser_fullurl)).setText(expanded_uri.toString());
-		
+
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
 				ActivityInfo ai = (ActivityInfo) adapter.getAdapter().getItem(position);
@@ -77,7 +77,7 @@ class ChooserAdapter extends BaseAdapter {
 	private Context context;
 	private List<ActivityInfo> list;
 	private LayoutInflater inflater;
-	
+
 	public ChooserAdapter(Context ctx, List<ActivityInfo> li) {
 		context = ctx;
 		list = li;
