@@ -13,7 +13,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 
 public class OnetapIntentPreference extends Activity {
 
@@ -51,29 +50,26 @@ public class OnetapIntentPreference extends Activity {
 		});
 	}
 	
-	private void addActivitiesToAdapter(ArrayAdapter<String> adapter, String selectedIntentName) {
+	private void addActivitiesToAdapter(ArrayAdapter<String> adapter, String selectedIntentName)
+	{
 		int i = 1, checked = 0;
 		PackageManager pm = this.getPackageManager();
-		
-		Intent intent = new Intent();
-		intent.setAction(Intent.ACTION_SEND);
-		intent.setType("text/plain");
-		
+
+		ActivityInfo[] ais = Util.getActivities(this, "text/plain", Intent.ACTION_SEND);
 		ailist = new ArrayList<ActivityInfo>();
 		
 		adapter.add("Disable");
 		ailist.add(null);
 		
-		List<ResolveInfo> resolveinfo = pm.queryIntentActivities(intent, 0);
-		for (ResolveInfo app : resolveinfo) {
-			//adapter.add(app.activityInfo.name);
-			ailist.add(app.activityInfo);
-			adapter.add((String) app.activityInfo.loadLabel(pm));
-			if (selectedIntentName.equals(app.activityInfo.name)) {
+		for (ActivityInfo ai : ais) {
+			ailist.add(ai);
+			adapter.add((String) ai.loadLabel(pm));
+			if (selectedIntentName.equals(ai.name)) {
 				checked = i;
 			}
 			i++;
 		}
+
 		lv.setItemChecked(checked, true);
 	}
 

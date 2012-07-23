@@ -7,7 +7,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.util.SparseBooleanArray;
 import android.view.View;
@@ -56,20 +55,15 @@ public class ShownApplicationsPreference extends Activity {
 		int i = 0;
 		List<Integer> checks = new ArrayList<Integer>();
 		PackageManager pm = this.getPackageManager();
-		
-		Intent intent = new Intent();
-		intent.setAction(Intent.ACTION_SEND);
-		intent.setType("text/plain");
-		
+
+		ActivityInfo[] ais = Util.getActivities(this, "text/plain", Intent.ACTION_SEND);
 		ailist = new ArrayList<ActivityInfo>();
 		
-		List<ResolveInfo> resolveinfo = pm.queryIntentActivities(intent, 0);
-		for (ResolveInfo app : resolveinfo) {
-			ailist.add(app.activityInfo);
-			adapter.add((String) app.activityInfo.loadLabel(pm));
-			// たくさんアプリが選択されてると遅そう
+		for (ActivityInfo ai : ais) {
+			ailist.add(ai);
+			adapter.add((String) ai.loadLabel(pm));
 			for (String selected : selectedIntentNames) {
-				if (selected.equals(app.activityInfo.name)) {
+				if (selected.equals(ai.name)){
 					checks.add(i);
 				}
 			}

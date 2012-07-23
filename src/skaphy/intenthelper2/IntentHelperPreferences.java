@@ -6,6 +6,7 @@ import java.util.List;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 
@@ -85,15 +86,11 @@ public class IntentHelperPreferences {
 		apps = appspref.split(",");
 		
 		// 存在するアクティビティのみにする
-		Intent intent = new Intent();
-		intent.setAction(Intent.ACTION_SEND);
-		intent.setType("text/plain");
 		List<String> apps_exists = new ArrayList<String>();
-		PackageManager pm = context.getPackageManager();
-		List<ResolveInfo> resolveinfos = pm.queryIntentActivities(intent, 0);
-		for (ResolveInfo ri : resolveinfos) {
+		ActivityInfo[] ais = Util.getActivities(context, "text/plain", Intent.ACTION_SEND);
+		for (ActivityInfo ai : ais) {
 			for (String app : apps) {
-				if (ri.activityInfo.name.equals(app)) {
+				if (ai.name.equals(app)) {
 					apps_exists.add(app);
 				}
 			}

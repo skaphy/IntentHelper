@@ -19,7 +19,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 
 public class IntentHelperChooser extends Activity {
 	
@@ -31,26 +30,17 @@ public class IntentHelperChooser extends Activity {
 		setContentView(R.layout.activity_intent_helper_chooser);
 		
 		String[] apps = (new IntentHelperPreferences(this)).getShownApplications();
-		
+		ActivityInfo[] all_activityinfos = Util.getActivities(this, "text/plain", Intent.ACTION_SEND);
 		List<ActivityInfo> activityinfos = new ArrayList<ActivityInfo>();
-		Intent intent = new Intent();
-		PackageManager pm = getPackageManager();
-		intent.setType("text/plain");
-		intent.setAction(Intent.ACTION_SEND);
-		List<ResolveInfo> resolveInfo = pm.queryIntentActivities(intent, 0);
-		for (ResolveInfo riapp : resolveInfo) {
-			boolean isShown = false;
+		for (ActivityInfo ainfo : all_activityinfos) {
 			if (apps.length == 0) {
-				activityinfos.add(riapp.activityInfo);
+				activityinfos.add(ainfo);
 			} else {
 				for (String app : apps) {
-					if (app.equals(riapp.activityInfo.name)) {
-						isShown = true;
+					if (app.equals(ainfo.name)) {
+						activityinfos.add(ainfo);
 						break;
 					}
-				}
-				if (isShown) {
-					activityinfos.add(riapp.activityInfo);
 				}
 			}
 		}
