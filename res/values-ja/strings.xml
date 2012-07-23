@@ -15,5 +15,7 @@
     <string name="title_activity_onetap_intent_preference">いつも同じアプリを起動</string>
     <string name="preference_developed_by">開発者</string>
     <string name="preference_developed_by_summary">&quot;@&quot;skaphy</string>
+    <string name="howtouse_url">http://skaphylog.tumblr.com/</string>
+    <string name="developer_url">http://twitter.com/skaphy</string>
 
 </resources>

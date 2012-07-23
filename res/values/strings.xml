@@ -17,5 +17,7 @@
     <string name="title_activity_onetap_intent_preference">Always use same application</string>
     <string name="preference_developed_by">Developer</string>
     <string name="preference_developed_by_summary">"@"skaphy</string>
+    <string name="howtouse_url">http://skaphylog.tumblr.com/</string>
+    <string name="developer_url">http://twitter.com/skaphy</string>
 
 </resources>

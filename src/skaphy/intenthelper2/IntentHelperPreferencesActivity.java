@@ -10,8 +10,8 @@ import android.preference.PreferenceActivity;
 public class IntentHelperPreferencesActivity extends PreferenceActivity
 {
 
-	private final Uri howtouse_uri = Uri.parse("http://skaphylog.tumblr.com/");
-	private final Uri developedby_uri = Uri.parse("http://twitter.com/skaphy");
+	private final Uri howtouse_uri = Uri.parse(getString(R.string.howtouse_url));
+	private final Uri developedby_uri = Uri.parse(getString(R.string.developer_url));
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
