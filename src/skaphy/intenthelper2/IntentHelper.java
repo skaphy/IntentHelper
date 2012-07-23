@@ -33,8 +33,6 @@ public class IntentHelper extends Activity {
 class ExpandURL extends AsyncTask<String, Integer, Integer>
 {
 
-	private final int DEFAULT_LIMIT = 10;
-
 	private Context context;
 	private Handler handler;
 	
@@ -85,7 +83,8 @@ class ExpandURL extends AsyncTask<String, Integer, Integer>
 	
 	private String expandUrl(String url) throws IOException
 	{
-		return expandUrl(url, DEFAULT_LIMIT);
+		IntentHelperPreferences pref = new IntentHelperPreferences(context);
+		return expandUrl(url, pref.getMaxRedirectCount());
 	}
 
 	private String expandUrl(String url, int limit) throws IOException
