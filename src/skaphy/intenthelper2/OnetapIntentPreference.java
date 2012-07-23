@@ -18,23 +18,25 @@ public class OnetapIntentPreference extends Activity {
 
 	private ListView lv;
 	private List<ActivityInfo> ailist;
+	private ArrayAdapter<String> adapter;
+	private IntentHelperPreferences prefs;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_onetap_intent_preference);
-		
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice);
+		prefs = new IntentHelperPreferences(getApplicationContext());
 
+		// リストビュー設定
 		lv = (ListView) findViewById(R.id.onetap_applications_listview);
 		lv.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice);
 		lv.setAdapter(adapter);
 
-		IntentHelperPreferences pref = new IntentHelperPreferences(getApplicationContext());
-		if (pref.getOnetapIntent() != null) {
-			addActivitiesToAdapter(adapter, pref.getOnetapIntent().getComponent().getClassName());
+		if (prefs.getOnetapIntent() != null) {
+			addActivitiesToAdapter(prefs.getOnetapIntent().getComponent().getClassName());
 		} else {
-			addActivitiesToAdapter(adapter, "");
+			addActivitiesToAdapter("");
 		}
 		
 		lv.setOnItemClickListener(new OnItemClickListener() {
@@ -50,7 +52,7 @@ public class OnetapIntentPreference extends Activity {
 		});
 	}
 	
-	private void addActivitiesToAdapter(ArrayAdapter<String> adapter, String selectedIntentName)
+	private void addActivitiesToAdapter(String selectedIntentName)
 	{
 		int i = 1, checked = 0;
 		PackageManager pm = this.getPackageManager();

@@ -19,38 +19,37 @@ public class ShownApplicationsPreference extends Activity {
 	
 	private ListView lv;
 	private ArrayList<ActivityInfo> ailist;
+	private ArrayAdapter<String> adapter;
+	private IntentHelperPreferences prefs;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_shown_applications_preference);
+		prefs = new IntentHelperPreferences(getApplicationContext());
 		
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice);
-		
+		// リストビュー設定
 		lv = (ListView) findViewById(R.id.shownapps_listView);
 		lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice);
 		lv.setAdapter(adapter);
-		
-		IntentHelperPreferences prefs = new IntentHelperPreferences(this);
-		addActivitiesToAdapter(adapter, prefs.getShownApplications());
-		
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
-				IntentHelperPreferences pref = new IntentHelperPreferences(getApplicationContext());
 				List<String> apps = new ArrayList<String>();
-				// アプリが増えるほど遅くなると思う
 				SparseBooleanArray arr = lv.getCheckedItemPositions();
 				for (int i = 0; i < arr.size(); i++) {
 					if (arr.valueAt(i)) {
 						apps.add(ailist.get(arr.keyAt(i)).name);
 					}
 				}
-				pref.setShownApplications((String[]) apps.toArray(new String[0]));
+				prefs.setShownApplications((String[]) apps.toArray(new String[0]));
 			}
 		});
+		
+		addActivitiesToAdapter(prefs.getShownApplications());
 	}
 	
-	private void addActivitiesToAdapter(ArrayAdapter<String> adapter, String[] selectedIntentNames)
+	private void addActivitiesToAdapter(String[] selectedIntentNames)
 	{
 		int i = 0;
 		List<Integer> checks = new ArrayList<Integer>();

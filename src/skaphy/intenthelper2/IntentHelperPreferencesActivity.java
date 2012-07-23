@@ -13,6 +13,7 @@ public class IntentHelperPreferencesActivity extends PreferenceActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.addPreferencesFromResource(R.xml.preferences);
+
 		findPreference("howtouse").setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			public boolean onPreferenceClick(Preference preference) {
 				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.howtouse_url))));

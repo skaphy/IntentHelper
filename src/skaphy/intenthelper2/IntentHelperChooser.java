@@ -23,13 +23,18 @@ import android.content.pm.PackageManager;
 public class IntentHelperChooser extends Activity {
 	
 	private Uri expanded_uri;
+	private IntentHelperPreferences prefs;
+	private ChooserAdapter adapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_intent_helper_chooser);
 		
-		String[] apps = (new IntentHelperPreferences(this)).getShownApplications();
+		prefs = new IntentHelperPreferences(this);
+		
+		// 表示するアプリを決める
+		String[] apps = prefs.getShownApplications();
 		ActivityInfo[] all_activityinfos = Util.getActivities(this, "text/plain", Intent.ACTION_SEND);
 		List<ActivityInfo> activityinfos = new ArrayList<ActivityInfo>();
 		for (ActivityInfo ainfo : all_activityinfos) {
@@ -45,11 +50,14 @@ public class IntentHelperChooser extends Activity {
 			}
 		}
 		
+		// リストビュー設定
 		ListView lv = (ListView) findViewById(R.id.chooser_applications_listview);
-		ChooserAdapter adapter = new ChooserAdapter(this, activityinfos);
+		adapter = new ChooserAdapter(this, activityinfos);
 		lv.setAdapter(adapter);
 		
+		// 展開後のURLを取得・表示
 		expanded_uri = Uri.parse(getIntent().getExtras().getString(Intent.EXTRA_TEXT));
+		((TextView) findViewById(R.id.chooser_fullurl)).setText(expanded_uri.toString());
 		
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
@@ -60,8 +68,6 @@ public class IntentHelperChooser extends Activity {
 				view.getContext().startActivity(intent);
 			}
 		});
-		
-		((TextView) findViewById(R.id.chooser_fullurl)).setText(expanded_uri.toString());
 	}
 
 }

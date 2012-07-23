@@ -27,7 +27,7 @@ public class IntentHelperPreferences {
 		if (val.matches("^[0-9]+$")) {
 			return Integer.parseInt(val);
 		}
-		setMaxRedirectCount(10);
+		setMaxRedirectCount(DEFAULT_REDIRECT_LIMIT);
 		return getMaxRedirectCount();
 	}
 	
