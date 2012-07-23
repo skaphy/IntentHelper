@@ -11,6 +11,7 @@ public class IntentHelperPreferencesActivity extends PreferenceActivity
 {
 
 	private final Uri howtouse_uri = Uri.parse("http://skaphylog.tumblr.com/");
+	private final Uri developedby_uri = Uri.parse("http://twitter.com/skaphy");
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,12 @@ public class IntentHelperPreferencesActivity extends PreferenceActivity
 		findPreference("howtouse").setOnPreferenceClickListener(new OnPreferenceClickListener(){
 			public boolean onPreferenceClick(Preference preference) {
 				startActivity(new Intent(Intent.ACTION_VIEW, howtouse_uri));
+				return true;
+			}
+		});
+		findPreference("developedby").setOnPreferenceClickListener(new OnPreferenceClickListener(){
+			public boolean onPreferenceClick(Preference preference) {
+				startActivity(new Intent(Intent.ACTION_VIEW, developedby_uri));
 				return true;
 			}
 		});

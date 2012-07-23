@@ -5,7 +5,8 @@
     <Preference android:title="@string/preference_onetap_intent" android:summary="@string/preference_onetap_intent_summary" android:key="onetap_intent"/>
 </PreferenceCategory>
     <PreferenceCategory android:title="@string/preference_category_appinfo">
-        <Preference android:summary="@string/preference_howtouse_summary" android:title="@string/preference_howtouse" android:key="howtouse"/><Preference android:title="@string/preference_version" android:summary="@string/app_version"/>
+        <Preference android:summary="@string/preference_howtouse_summary" android:title="@string/preference_howtouse" android:key="howtouse"/><Preference android:summary="@string/preference_developed_by_summary" android:title="@string/preference_developed_by" android:key="developedby"/><Preference android:title="@string/preference_version" android:summary="@string/app_version"/>
+        
         
     </PreferenceCategory>
     
