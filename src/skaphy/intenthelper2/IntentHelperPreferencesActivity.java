@@ -9,23 +9,19 @@ import android.preference.PreferenceActivity;
 
 public class IntentHelperPreferencesActivity extends PreferenceActivity
 {
-
-	private final Uri howtouse_uri = Uri.parse(getString(R.string.howtouse_url));
-	private final Uri developedby_uri = Uri.parse(getString(R.string.developer_url));
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.addPreferencesFromResource(R.xml.preferences);
 		findPreference("howtouse").setOnPreferenceClickListener(new OnPreferenceClickListener(){
 			public boolean onPreferenceClick(Preference preference) {
-				startActivity(new Intent(Intent.ACTION_VIEW, howtouse_uri));
+				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.howtouse_url))));
 				return true;
 			}
 		});
 		findPreference("developedby").setOnPreferenceClickListener(new OnPreferenceClickListener(){
 			public boolean onPreferenceClick(Preference preference) {
-				startActivity(new Intent(Intent.ACTION_VIEW, developedby_uri));
+				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.developer_url))));
 				return true;
 			}
 		});
